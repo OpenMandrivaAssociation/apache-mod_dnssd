@@ -5,13 +5,13 @@
 
 Summary:	Mod_dnssd adds DNS-SD Zeroconf support to Apache 2.0 using Avahi
 Name:		apache-%{mod_name}
-Version:	0.4
-Release:	%mkrel 3
+Version:	0.5
+Release:	%mkrel 1
 Group:		System/Servers
 License:	Apache License
 URL:		http://0pointer.de/lennart/projects/mod_dnssd/
-Source0:	http://0pointer.de/lennart/projects/mod_dnssd/mod_dnssd-%{version}.tar.bz2
-Source1:	%{mod_conf}.bz2
+Source0:	http://0pointer.de/lennart/projects/mod_dnssd/mod_dnssd-%{version}.tar.gz
+Source1:	%{mod_conf}
 Patch0:		mod_dnssd-0.4-no_silly_checks_because_we_know_the_apache_version_is_ok.diff
 Requires(pre): rpm-helper
 Requires(postun): rpm-helper
@@ -31,13 +31,15 @@ BuildRequires:	lynx
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
-mod_dnssd is an Apache module which adds Zeroconf support via
-DNS-SD using Avahi.
+mod_dnssd is an Apache module which adds Zeroconf support via DNS-SD using
+Avahi.
 
 %prep
 
 %setup -q -n %{mod_name}-%{version}
 %patch0 -p0
+
+cp %{SOURCE1} %{mod_conf}
 
 # strip away annoying ^M
 find . -type f|xargs file|grep 'CRLF'|cut -d: -f1|xargs perl -p -i -e 's/\r//'
@@ -61,7 +63,7 @@ install -d %{buildroot}%{_libdir}/apache-extramodules
 install -d %{buildroot}%{_sysconfdir}/httpd/modules.d
 
 install -m0755 src/.libs/*.so %{buildroot}%{_libdir}/apache-extramodules/
-bzcat %{SOURCE1} > %{buildroot}%{_sysconfdir}/httpd/modules.d/%{mod_conf}
+install -m0644 %{mod_conf} %{buildroot}%{_sysconfdir}/httpd/modules.d/%{mod_conf}
 
 install -d %{buildroot}%{_var}/www/html/addon-modules
 ln -s ../../../..%{_docdir}/%{name}-%{version} %{buildroot}%{_var}/www/html/addon-modules/%{name}-%{version}
@@ -87,5 +89,3 @@ fi
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/httpd/modules.d/%{mod_conf}
 %attr(0755,root,root) %{_libdir}/apache-extramodules/%{mod_so}
 %{_var}/www/html/addon-modules/*
-
-
