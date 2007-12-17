@@ -28,7 +28,6 @@ BuildRequires:	file
 BuildRequires:	libavahi-common-devel >= 0.6.4
 BuildRequires:	libavahi-client-devel >= 0.6.4
 BuildRequires:	lynx
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 mod_dnssd is an Apache module which adds Zeroconf support via DNS-SD using
