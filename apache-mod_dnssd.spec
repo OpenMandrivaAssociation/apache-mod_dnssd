@@ -51,7 +51,7 @@ libtoolize --force --copy; aclocal-1.8 ; autoheader; automake-1.8 --add-missing 
 
 #%{_sbindir}/apxs -c src/mod_dnssd.c -Wl,-lavahi-common -Wl,-lavahi-client  
 
-%configure2_5x
+%configure2_5x --localstatedir=/var/lib
 
 %make
 
