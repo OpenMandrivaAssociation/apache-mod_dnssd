@@ -5,8 +5,8 @@
 
 Summary:	Mod_dnssd adds DNS-SD Zeroconf support to Apache 2.0 using Avahi
 Name:		apache-%{mod_name}
-Version:	0.5
-Release:	%mkrel 4
+Version:	0.6
+Release:	%mkrel 1
 Group:		System/Servers
 License:	Apache License
 URL:		http://0pointer.de/lennart/projects/mod_dnssd/
