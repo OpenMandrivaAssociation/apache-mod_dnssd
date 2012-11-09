@@ -1,0 +1,32 @@
+--- configure.ac	2006-04-01 14:22:08.000000000 +0200
++++ configure.ac.oden	2006-04-01 22:17:57.000000000 +0200
+@@ -97,28 +97,7 @@
+ 
+ # saving current CFLAGS
+ CFLAGS_SAVED=$CFLAGS
+-CFLAGS="$CFLAGS -I`${APXS} -q INCLUDEDIR`"
+-
+-AC_MSG_CHECKING([for Apache 2])
+-AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
+-	#include <ap_release.h>
+-]], [[
+-        char *version = AP_SERVER_BASEREVISION;
+-]])],[
+-        APACHE_2="yes"
+-],[
+-        APACHE_2="no"
+-])
+-
+-AC_MSG_RESULT($APACHE_2)
+-
+-if test "x$APACHE_2" = "xno" ; then
+-    AC_MSG_ERROR([*** Sorry, you need apache 2 ***])
+-fi
+-
+-# restoring CFLAGS
+-CFLAGS=$CFLAGS_SAVED
+-
++CFLAGS="$CFLAGS -I`${APXS} -q INCLUDEDIR` `apr-1-config --cflags`"
+ 
+ PKG_CHECK_MODULES(AVAHI, [ avahi-client >= 0.6 ])
+ AC_SUBST(AVAHI_CFLAGS)
