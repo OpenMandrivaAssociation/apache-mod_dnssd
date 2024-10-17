@@ -9,7 +9,7 @@ Version:	0.6
 Release:	8
 Group:		System/Servers
 License:	Apache License
-Url:		http://0pointer.de/lennart/projects/mod_dnssd/
+Url:		https://0pointer.de/lennart/projects/mod_dnssd/
 Source0:	http://0pointer.de/lennart/projects/mod_dnssd/mod_dnssd-%{version}.tar.gz
 Source1:	%{mod_conf}
 Patch0:		mod_dnssd-0.4-no_silly_checks_because_we_know_the_apache_version_is_ok.diff
