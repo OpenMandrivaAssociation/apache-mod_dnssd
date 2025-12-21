@@ -20,6 +20,11 @@ Requires:	apache-conf >= 2.2.0
 Requires:	apache >= 2.2.0
 Requires:	apache-mod_dav >= 2.2.0
 Requires:	apache-mod_userdir >= 2.2.0
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	file
 BuildRequires:	lynx
 BuildRequires:	apache-devel >= 2.2.0
